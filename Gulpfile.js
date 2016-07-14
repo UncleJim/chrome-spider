@@ -23,5 +23,5 @@ gulp.task('js',function(){
 
 gulp.task('default',function(){
   gulp.watch('src/style/**/*.less',['less'])
-  gulp.watch('src/js/**/*.js',['js'])
+  gulp.watch('src/script/**/*.js',['js'])
 })
