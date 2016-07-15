@@ -4,6 +4,7 @@ const rename = require('gulp-rename')
 const less = require('gulp-less')
 const minifyCss = require('gulp-minify-css')
 
+const browserify = require('gulp-browserify')
 const uglify = require('gulp-uglify')
 
 gulp.task('less', function() {
@@ -17,11 +18,13 @@ gulp.task('less', function() {
     .pipe(gulp.dest('dist/css'))
 })
 
-gulp.task('js',function(){
-
+gulp.task('bundle', function() {
+  gulp.src(['src/script/main.js'], { read: false })
+    .pipe(browserify())
+    .pipe(gulp.dest('dist/js'))
 })
 
-gulp.task('default',function(){
-  gulp.watch('src/style/**/*.less',['less'])
-  gulp.watch('src/script/**/*.js',['js'])
+gulp.task('default', function() {
+  gulp.watch('src/style/**/*.less', ['less'])
+  gulp.watch('src/script/**/*.js', ['bundle'])
 })
